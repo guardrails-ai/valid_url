@@ -1,3 +1,3 @@
-from .main import RegexMatch
+from .main import ValidURL
 
-__all__ = ["RegexMatch"]
+__all__ = ["ValidURL"]

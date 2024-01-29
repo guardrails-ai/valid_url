@@ -1,19 +1,19 @@
 from guardrails import Guard
 from pydantic import BaseModel, Field
-from validator import RegexMatch
+from validator import ValidURL
 
 
 class ValidatorTestObject(BaseModel):
     test_val: str = Field(
         validators=[
-            RegexMatch(regex="a.*", match_type="fullmatch", on_fail="exception")
+            ValidURL(on_fail="exception")
         ]
     )
 
 
 TEST_OUTPUT = """
 {
-  "test_val": "a test value"
+  "test_val": "https://guardrailsai.com"
 }
 """
 
@@ -27,7 +27,7 @@ print("validated output: ", guarded_output)
 
 TEST_FAIL_OUTPUT = """
 {
-"test_val": "b test value"
+"test_val": "notalink"
 }
 """
 
